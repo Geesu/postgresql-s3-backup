@@ -108,7 +108,6 @@ def verify_configuration!
   fail "No S3_ACCESS_KEY_ID set in the current environment" unless ENV['S3_ACCESS_KEY_ID']
   fail "No S3_SECRET_ACCESS_KEY set in the current environment" unless ENV['S3_SECRET_ACCESS_KEY']
   fail "No S3_BUCKET set in the current environment" unless ENV['S3_BUCKET']
-  fail "No PG_USERNAME set in the current environment" unless ENV['PG_USERNAME']
   fail "No PG_DBNAME set in the current environment" unless ENV['PG_DBNAME']
 end
 
@@ -118,7 +117,7 @@ def run
   backup_file = "#{pwd}/tmp/ahalogy_prod_#{datestamp}_dump.bak"
 
   puts "Starting production backup.."
-  Kernel::system "pg_dump -h localhost -U #{ENV['PG_USERNAME']} --no-privileges --file=#{backup_file} -Fc #{ENV['PG_DBNAME']}"
+  Kernel::system "pg_dump --no-privileges --file=#{backup_file} -Fc #{ENV['PG_DBNAME']}"
 
   puts "Uploading production backup to S3"
   begin

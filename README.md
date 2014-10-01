@@ -1,13 +1,12 @@
 postgresql-backup
 =================
 
-Project for backing up our postgresql DB to S3.  It should be run on the production database server.
+Project for backing up our postgresql DB to S3.  It should be run on the production database server. It assumes the script will be run as the postgres user.
 
 Store amazon access credentials in your local environment:
 S3_ACCESS_KEY_ID
 S3_SECRET_ACCESS_KEY
 S3_BUCKET
-PG_USERNAME
 PG_DBNAME
 
 #### Credits
